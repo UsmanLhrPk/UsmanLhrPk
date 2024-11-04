@@ -1,21 +1,13 @@
-As a Senior Software Engineer, I have a strong foundation in a range of technologies, including Ruby on Rails, Laravel, Ruby, PHP, MySQL, Postgres, and Redis. I have a proven track record of delivering high-quality software solutions and am adept at adapting to new technologies and approaches as needed.
-With a growth mindset, I always strive to learn and improve new and existing technologies.
+As a Senior Software Engineer and DevOps specialist, I bring a strong foundation in a broad array of technologies, including Ruby on Rails, Laravel, Ruby, PHP, MySQL, PostgreSQL, Redis, RabbitMQ, Solr, JavaScript, and CI/CD. I am known for delivering scalable, high-quality software solutions and adapting quickly to new technologies and methodologies as the industry evolves. With a growth mindset, I continuously seek opportunities to refine both new and existing technologies to drive efficiency and innovation.
 
-One of my key strengths is my ability to excel in complex, intricate projects. I have a keen attention to detail and am able to deliver scalable solutions that meet the needs of my clients. My experience with Github CI/CD has also given me a solid understanding of agile development practices and the ability to quickly iterate and deliver updates to software products.
+One of my core strengths is excelling in complex, detail-oriented projects. I am committed to designing solutions that not only meet but exceed client expectations, focusing on long-term scalability and precision. My experience with GitHub CI/CD pipelines has reinforced my agile development skills, enabling me to iterate rapidly and deliver consistent software updates.
 
-In my current role at Cyber Nest, I have had the opportunity to work on a variety of projects, collaborating with cross-functional teams to deliver innovative software solutions. I am a proactive problem-solver and enjoy the challenge of finding creative solutions to complex problems.
+Currently, at Cyber Nest, I collaborate with cross-functional teams to create and implement forward-thinking software solutions. My responsibilities include leading the technical design and development of new software projects, maintaining and optimizing legacy code, guiding and mentoring junior staff, and establishing CI/CD pipelines to streamline deployments. Additionally, I conduct training to keep the team up-to-date with the latest coding standards and best practices, fostering a culture of continuous improvement and technical excellence.
 
-I am excited about the opportunity to join a dynamic team and contribute my skills and expertise to the development of innovative software products.
+In addition to my software engineering expertise, I am a dedicated DevOps engineer specializing in AWS and Hostinger, with the flexibility to extend my skills to other platforms. My DevOps focus enables me to bridge development and operations seamlessly, ensuring the efficient, automated deployment and smooth operation of applications.
 
-Experienced in Ruby on Rails  Laravel  MySQL  PostgreSQL  RabbitMQ  Redis  Solr  JavaScript  PHP  Continuous Integration and Continuous Delivery (CI/CD)
+I am excited by the opportunity to contribute to a dynamic team, bringing my technical skills and innovative mindset to the development of cutting-edge software products.
 
-As a Senior Software Engineer I am responsible for
-1. The technical design and development of new software projects using the latest technologies.
-2. Maintaining and debugging existing and legacy code.
-3. Providing technical guidance and training to junior staff.
-4. Writing CI/CD pipelines for new projects to ensure efficient and automated deployment.
-5. Provide training to keep developers updated on the latest best practices and coding standards.
-6. Additional responsibilities include collaborating with cross-functional teams to develop software solutions, participating in code reviews, and staying up-to-date with industry best practices and
-emerging technologies.
+
 
 Contact me at usmanjzcn@gmail.com
