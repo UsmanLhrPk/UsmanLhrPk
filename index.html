@@ -235,6 +235,20 @@
   .review-card blockquote { color: var(--text); font-size: 15px; line-height: 1.65; flex: 1; }
   .review-meta { font-size: 13.5px; color: var(--muted); }
   .review-meta strong { color: var(--text); font-weight: 600; }
+  .review-foot { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    object-fit: cover; border: 1px solid var(--line-strong);
+  }
+  .review-avatar--initials {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .review-project {
+    display: inline-block; margin-top: 5px;
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    border: 1px solid var(--line-strong); border-radius: 7px; padding: 2px 9px;
+  }
   .empty-state {
     grid-column: 1 / -1;
     border: 1px dashed var(--line-strong); border-radius: var(--radius);
@@ -448,6 +462,25 @@
           <input id="rv-role" name="role" type="text" maxlength="120" placeholder="Founder, Acme Inc." />
         </div>
       </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="rv-project">Project</label>
+          <input id="rv-project" name="project" type="text" list="rv-projects" maxlength="120" required placeholder="Which project did we work on?" />
+          <datalist id="rv-projects">
+            <option value="LyfeTymes"></option>
+            <option value="The Chalet Edit"></option>
+            <option value="Aviary Platform"></option>
+            <option value="Superviral"></option>
+            <option value="APC Buddy"></option>
+            <option value="Quartrly"></option>
+            <option value="Other"></option>
+          </datalist>
+        </div>
+        <div class="field">
+          <label for="rv-photo">Photo URL <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <input id="rv-photo" name="photo_url" type="url" maxlength="500" placeholder="https://…/you.jpg" />
+        </div>
+      </div>
       <div class="field">
         <label>Rating</label>
         <div class="rating-input" id="rating-input" role="radiogroup" aria-label="Rating out of 5">
@@ -601,27 +634,85 @@ let rating = 0;
 const configured = SUPABASE_URL && SUPABASE_ANON_KEY;
 const sb = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-function esc(str) {
-  const d = document.createElement("div");
-  d.textContent = str;
-  return d.innerHTML;
+function initials(name) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  const first = (parts[0] || "?")[0];
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
+
+function hueFromName(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360;
+  return h;
+}
+
+function makeAvatar(name, photoUrl) {
+  const initEl = document.createElement("div");
+  initEl.className = "review-avatar review-avatar--initials";
+  initEl.textContent = initials(name);
+  const hue = hueFromName(name);
+  initEl.style.background = "hsl(" + hue + " 45% 22%)";
+  initEl.style.color = "hsl(" + hue + " 70% 78%)";
+
+  if (photoUrl) {
+    const img = document.createElement("img");
+    img.className = "review-avatar";
+    img.src = photoUrl;
+    img.alt = "";
+    img.loading = "lazy";
+    img.referrerPolicy = "no-referrer";
+    img.addEventListener("error", () => img.replaceWith(initEl));
+    return img;
+  }
+  return initEl;
 }
 
 function renderReviews(rows) {
   grid.innerHTML = "";
   if (!rows || rows.length === 0) {
-    grid.innerHTML = '<div class="empty-state">No reviews yet — worked with me? Be the first below.</div>';
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "No reviews yet — worked with me? Be the first below.";
+    grid.appendChild(empty);
     return;
   }
   rows.forEach(r => {
     const card = document.createElement("article");
     card.className = "review-card";
-    card.innerHTML =
-      '<div class="stars" aria-label="' + r.rating + ' out of 5 stars">' +
-        "★".repeat(r.rating) + '<span style="color:var(--line-strong)">' + "★".repeat(5 - r.rating) + "</span></div>" +
-      "<blockquote>“" + esc(r.message) + "”</blockquote>" +
-      '<div class="review-meta"><strong>' + esc(r.name) + "</strong>" +
-      (r.role ? " · " + esc(r.role) : "") + "</div>";
+
+    const stars = document.createElement("div");
+    stars.className = "stars";
+    stars.setAttribute("aria-label", r.rating + " out of 5 stars");
+    const on = document.createElement("span");
+    on.textContent = "★".repeat(r.rating);
+    const off = document.createElement("span");
+    off.style.color = "var(--line-strong)";
+    off.textContent = "★".repeat(5 - r.rating);
+    stars.append(on, off);
+
+    const quote = document.createElement("blockquote");
+    quote.textContent = "“" + r.message + "”";
+
+    const foot = document.createElement("div");
+    foot.className = "review-foot";
+    foot.appendChild(makeAvatar(r.name, r.photo_url));
+
+    const meta = document.createElement("div");
+    meta.className = "review-meta";
+    const nameEl = document.createElement("strong");
+    nameEl.textContent = r.name;
+    meta.appendChild(nameEl);
+    if (r.role) meta.appendChild(document.createTextNode(" · " + r.role));
+    if (r.project) {
+      const proj = document.createElement("div");
+      proj.className = "review-project";
+      proj.textContent = r.project;
+      meta.appendChild(proj);
+    }
+    foot.appendChild(meta);
+
+    card.append(stars, quote, foot);
     grid.appendChild(card);
   });
 }
@@ -635,7 +726,7 @@ async function loadReviews() {
   try {
     const { data, error } = await sb
       .from("reviews")
-      .select("name, role, rating, message")
+      .select("name, role, project, rating, message, photo_url")
       .eq("approved", true)
       .order("created_at", { ascending: false })
       .limit(12);
@@ -663,17 +754,23 @@ form.addEventListener("submit", async ev => {
   const name = form.name.value.trim();
   const role = form.role.value.trim();
   const message = form.message.value.trim();
+  const project = form.project.value.trim();
+  const photoUrl = form.photo_url.value.trim();
   const honeypot = form.website.value;
 
   if (honeypot) return; // bot
   if (name.length < 2) return showMsg("err", "Add your name so I know who you are.");
   if (!rating) return showMsg("err", "Pick a star rating.");
+  if (!project) return showMsg("err", "Pick or type the project we worked on.");
+  if (photoUrl && !/^https:\/\//.test(photoUrl)) return showMsg("err", "Photo URL must start with https://");
   if (message.length < 10) return showMsg("err", "Say a little more — at least 10 characters.");
 
   const btn = form.querySelector('button[type="submit"]');
   btn.disabled = true; btn.textContent = "Submitting…";
   try {
-    const { error } = await sb.from("reviews").insert({ name, role: role || null, rating, message });
+    const { error } = await sb.from("reviews").insert({
+      name, role: role || null, project, rating, message, photo_url: photoUrl || null
+    });
     if (error) throw error;
     form.reset(); rating = 0;
     ratingWrap.querySelectorAll("button").forEach(b => b.classList.remove("on"));

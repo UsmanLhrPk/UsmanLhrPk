@@ -13,6 +13,16 @@ create table public.reviews (
   approved    boolean not null default false
 );
 
+-- Added later: optional reviewer photo (https URL only) and project attribution.
+alter table public.reviews
+  add column if not exists project   text
+    check (project is null or char_length(project) <= 120),
+  add column if not exists photo_url text
+    check (
+      photo_url is null
+      or (char_length(photo_url) <= 500 and photo_url ~ '^https://')
+    );
+
 -- Row Level Security: the anon key can only read approved reviews
 -- and can only insert rows that start unapproved. Nobody can update
 -- or delete through the public API.
@@ -34,8 +44,9 @@ create policy "anyone can submit an unapproved review"
 --
 -- Seeding real testimonials you already have (e.g. from clients):
 --
---   insert into public.reviews (name, role, rating, message, approved)
---   values ('Client Name', 'Founder, Company', 5, 'Real quote here.', true);
+--   insert into public.reviews (name, role, project, rating, message, photo_url, approved)
+--   values ('Client Name', 'Founder, Company', 'LyfeTymes', 5,
+--           'Real quote here.', 'https://example.com/photo.jpg', true);
 --
 -- Never seed invented reviews — real ones only.
 -- ============================================================
