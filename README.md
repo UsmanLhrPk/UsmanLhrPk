@@ -49,6 +49,6 @@ I use AI-assisted development to move fast — with the architectural understand
 
 ## 📫 Reach me
 
-**Email:** [usmanjzcn@gmail.com](mailto:usmanjzcn@gmail.com) · **LinkedIn:** [usman-javaid](https://www.linkedin.com/in/usman-javaid-04658411b/) · **Portfolio:** [usmanlhrpk.github.io](https://usmanlhrpk.github.io)
+**Email:** [usmanjzcn@gmail.com](mailto:usmanjzcn@gmail.com) · **LinkedIn:** [usman-javaid](https://www.linkedin.com/in/usman-javaid-04658411b/) · **Portfolio:** [usmanlhrpk.github.io]([https://usmanlhrpk.github.io](https://usmanlhrpk.github.io/UsmanLhrPk/))
 
 > Have a production fire, a rebuild, or a lead role in mind? My favourite projects are the ones everyone else gave up on.
