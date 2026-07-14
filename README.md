@@ -16,15 +16,15 @@ $ systemctl status usman
 
 ## 🔧 Proof, not adjectives
 
-| Project | What happened | Stack |
-|---|---|---|
-| Confidential | Owner locked out of production, Stripe & SendGrid keys leaked, product dead. Restored server access via EBS volume surgery, rotated every credential|
-| [LyfeTymes](https://www.lyfetymes.com) | Rebuilt the platform from scratch as technical partner. **2,000%+ revenue growth to profitability in 6 months — before any marketing.** 25,000+ families served. | Laravel · Vue · AWS · Stripe |
+| Project | What happened                                                                                                                                                                                                                                                                                            | Stack |
+|---|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
+| Confidential | Owner locked out of production, various third party API keys leaked, product dead. Restored server access via EBS volume surgery, rotated every credential                                                                                                                                               |
+| [LyfeTymes](https://www.lyfetymes.com) | Rebuilt the platform from scratch as technical partner. **2,000%+ revenue growth to profitability in 6 months — before any marketing.** 25,000+ families served.                                                                                                                                         | Laravel · Vue · AWS · Stripe |
 | [The Chalet Edit](https://thechaletedit.com) | Search was fully broken on a luxury ski platform featured in *Tatler*, *The Telegraph* & *The Times*. Rebuilt it from scratch — heavy faceting, currency conversion computed in-query at the DB layer, availability logic like "consecutively free for two 7-day sessions." **Multi-second → ~1 second.** | Laravel · Livewire · Alpine.js · MySQL |
-| [Aviary Platform](https://www.aviaryplatform.com) | AV archive used by Yale & other research libraries. Took over a 10-year veteran's full role within 4 months. Led **Solr 7→9** and **Rails 5→7** upgrades; built field-level search authorization at the index layer; cut timeout-prone queries to ~1s. | Ruby on Rails · Apache Solr |
-| [Superviral](https://superviral.io) | Complete vanilla-PHP-to-Laravel rebuild in **2 months** as architecture lead. Pixel-identical frontend, fully re-engineered backend, seamless cutover. | Laravel · MySQL |
-| APC Buddy | AI-powered RICS interview prep, **built solo end to end**: OpenAI question generation, mock interviews, Stripe subscriptions, admin panel with live prompt control. | Laravel · OpenAI API · Stripe |
-| [Quartrly](https://quartrly.com) | Marketplace for paid 15-min video calls *(in development)*. Full Stripe Express money movement: payments, refunds, manual payouts, Stripe↔Mongo transaction sync. | MERN · Stripe Express |
+| [Aviary Platform](https://www.aviaryplatform.com) | AV archive used by Yale & other research libraries. Took over a 10-year veteran's full role within 4 months. Led **Solr 7→9** and **Rails 5→7** upgrades; built field-level search authorization at the index layer; cut timeout-prone queries to ~1s.                                                   | Ruby on Rails · Apache Solr |
+| [Superviral](https://superviral.io) | Complete vanilla-PHP-to-Laravel rebuild in **2 months** as architecture lead. Pixel-identical frontend, fully re-engineered backend, seamless cutover.                                                                                                                                                   | Laravel · MySQL |
+| APC Buddy | AI-powered RICS interview prep, **built solo end to end**: OpenAI question generation, mock interviews, Stripe subscriptions, admin panel with live prompt control.                                                                                                                                      | Laravel · OpenAI API · Stripe |
+| [Quartrly](https://quartrly.com) | Marketplace for paid 15-min video calls *(in development)*. Full Stripe Express money movement: payments, refunds, manual payouts, Stripe↔Mongo transaction sync.                                                                                                                                        | MERN · Stripe Express |
 
 ---
 
